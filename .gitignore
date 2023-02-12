@@ -1,0 +1,29 @@
+
+# 01 Compiled source #
+###################################################
+*.class
+*.o
+*.so
+
+# 02 Logs and databases #
+###################################################
+.log
+.sql
+.sqlite
+
+# O3 generated files #
+###################################################
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# O4 files and dirictories for this project #
+###################################################
+
+
+.git
+.idea
+venv/
+static/

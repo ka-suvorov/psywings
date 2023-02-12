@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title  }} :: Смотрим статью {{ block.super }}
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load ratings %}
+<div class="mx-auto m-5 p-2 container position-relative top-50 start-50 translate-middle main clearfix">
+    <div class="float-end col-md-12">
+        <div class="card col-md-10" style="border-width: 2px; color: #000000">
+                <div class="card-header">
+                    <h4>Просмотров</h4>
+
+                        {% if post.current_hit_count > 1 %}
+                            | {{ post.current_hit_count }} views
+                        {% endif %}
+
+                    <p class="card-text">{{ object.title }}</p>
+
+                </div>
+                <div class="card-body">
+                    {% if item.pict %}
+                            <img src="{{ item.pict.url }}" alt="{{ item.title }}" height="240" class="img-responsive img-fluid rounded mx-auto d-block img-thumbnail" style="object-fit: none;
+              object-position: center; object-fit: cover; display: block; width: 100%; max-height: 200px; max-width: 200px; margin-bottom: 1rem;">
+                        {% else %}
+                            <img src="https://phonoteka.org/uploads/posts/2022-02/1643964527_45-phonoteka-org-p-raznotsvetnii-fon-razmitii-50.jpg" alt="Размытое изображение">
+                        {% endif %}
+                     {{ object.text }}
+                </div>
+                <div class="card-footer text-muted">
+                    <p>{{ object.created_at|date:"Y-m-d H:i:s" }}</p>
+                    {% ratings object %}
+                </div>
+            </div>
+    </div>
+ </div>
+
+{% if post.current_hit_count > 1 %}
+    | {{ post.current_hit_count }} views
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title  }} :: Опросы {{ block.super }}
+{% endblock %}
+{% load static %}
+{% block content %}
+
+
+<div class="mx-auto m-5 p-2 container position-relative top-50 start-50 translate-middle main clearfix">
+    <div class="row">
+
+        {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'psywings:detail_poll' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="pagination col-md-11 p-1 m-5 bg-light text-dark text-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';"> Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страниц {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}

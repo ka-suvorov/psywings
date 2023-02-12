@@ -1,0 +1,184 @@
+{% load static %}
+<! DOCTYPE html>
+<html lang ="en" style="
+                font-size: 1rem;
+                }
+                @include media-breakpoint-up(sm) {
+                  html {
+                    font-size: 1.1rem;
+                  }
+                }
+                @include media-breakpoint-up(md) {
+                  html {
+                    font-size: 1.2rem;
+                  }
+                }
+                @include media-breakpoint-up(lg) {
+                  html {
+                    font-size: 1.3rem;
+                  }
+                ">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <script src="https://kit.fontawesome.com/5135d630a7.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <title>PSY-WINGS! {% block title %}{% endblock %}</title>
+
+    <style>
+
+            html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, strong, sub, sup, b, u, i,  dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                outline: 0;
+                vertical-align: baseline;
+                background: transparent;
+                font-size: 100%;
+            }
+            a {
+                margin:0;
+                padding:0;
+                font-size:100%;
+                vertical-align:baseline;
+                background:transparent;
+                outline:none;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            td, td img {
+                vertical-align: top;
+            }
+            input, select, button, textarea {
+                margin: 0;
+                font-size: 100%;
+                outline: none;
+            }
+            input[type="password"], textarea {
+                padding: 0;
+            }
+            input[type="checkbox"] {
+                vertical-align: bottom;
+            }
+            input[type="radio"] {
+                vertical-align: text-bottom;
+            }
+            sub {
+                vertical-align: sub;
+                font-size: smaller;
+            }
+            sup {
+                vertical-align: super;
+                font-size: smaller;
+            }
+            article, aside, details, figcaption, figure, hgroup, menu, nav, section {
+                display:block;
+            }
+            nav ul {
+                 list-style:none;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+
+            ui li strong {
+                text-align: center;
+            }
+
+            ui .item {
+                text-align: center;
+            }
+
+            .alphabet li a {
+                font-size: 1rem;
+            }
+
+
+    </style>
+
+</head>
+
+<body class="d-flex flex-column clearfix" style="background: radial-gradient(circle at 100%, #333, #333 50%, #eee 75%, #333 75%);
+                                                                    margin: 0;
+                                                                    padding: 0
+                                                                    overflow-x:hidden;">
+
+    <div class="header_block" style="max-width: 95%;
+                                    margin-0: auto;
+                                    border-radius: 1em;
+                                    padding: 1em;
+                                    display: block;">
+
+        <div class="container-fluid">
+            {% include "inc/_navbar.html" %}
+        </div>
+
+         <div class ='top_line container-fluid m-1 quotes text-light'>
+            {% include "inc/_topline.html" %}
+        </div>
+
+    </div>
+
+    <div class="main_block container-fluid p-3">
+            <div class="wrapper" style="max-width: 95%;
+
+                                                margin-top: 0;
+                                                margin-bottom: 0;
+                                                margin-left: auto;
+                                                margin-right: auto;
+                                                opacity: 0.9;">
+
+                <div class="left_side float-md-start pull-left row-fluid col-md-2 col-sm-12" style="padding: 5%;
+                                                                                        background: #F0F8FF;
+
+                                                                                        border-style: groove;
+                                                                                        border-radius: 50% 20% / 10% 40%;">
+                    {% block leftbar%}
+                    {% include "inc/_leftbar.html" %}
+                    {% endblock %}
+                </div>
+
+                <div class ="dynamic float-md-start pull-left row-fluid col-md-8 col-sm-12" style="background: white;
+                                                                                        padding: 2%;
+
+                                                                                        font-color: black;
+                                                                                        font-size: 1rem;
+                                                                                        border-style: groove;
+                                                                                        border-radius: 30px;">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div class="right_side float-md-start pull-left row-fluid col-md-2 col-sm-12" style="background: #F0FFFF;
+                                                                                        padding: 2%;
+
+                                                                                        border-style: groove;
+                                                                                        border-radius: 40% 10% / 20% 50%;">
+                    {% block rightbar%}
+                    {% include "inc/_rightbar.html" %}
+                    {% endblock %}
+                </div>
+            </div>
+    </div>
+    <div>
+        <div class="footer_block container-fluid p-5">
+            {% include "inc/_footer.html" %}
+        </div>
+    </div>
+
+</body>
+</html>

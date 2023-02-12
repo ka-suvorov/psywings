@@ -1,0 +1,34 @@
+{% load site_tags %}
+
+<div class="float-start p-2">
+    <h4>Новое на сайте</h4>
+    <hr style="margin: 20px 0;
+                padding: 0;
+                height: 0;
+                border: none;
+                border-top: 2px dotted #ddd;">
+
+    {% get_fresh_news as news %}
+
+    {% for item in news %}
+        <h5>{{ item.title }}</h5>
+    <br />
+            {{ item.message }}
+    {% endfor %}
+
+</div>
+
+<div class="float-start p-2">
+        <h4>Категории статей</h4>
+    <br />
+    {% get_post_categories as post_cat %}
+     {% for item in post_cat %}
+        <ul class="navbar-nav">
+            <li class="nav-item m-0 float-start" style="border: 0px groove; border-radius: 16px; margin: -0.75rem !important;">
+              <a href="{% url 'psywings:get_post_category' item.pk %}" class="nav-link">{{ item.title }}</a>
+            </li>
+        </ul>
+    <br />
+    {% endfor %}
+
+</div>

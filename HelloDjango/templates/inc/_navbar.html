@@ -1,0 +1,48 @@
+<nav class ="navbar fixed-top navbar-expand-lg navbar-dark bg-primary mb-4 container-fluid bg-dark text-white p-1 clearfix">
+    <div class ="col-md-1 pe-2 float-start">
+        <a class ="navbar-brand" href ="{% url 'pages:index' %}">PSY-WINGS!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse col-md-8 ps-5 float-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{% url 'psywings:posts' %}" class="float-start nav-link p-2 m-2">Статьи</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'psywings:books' %}" class="float-start nav-link p-2 m-2">Книжная полка</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'psywings:dictionary_list' %}" class="float-start nav-link p-2 m-2">Психологический Словарик</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'psywings:links' %}" class="float-start nav-link p-2 m-2">Ресурсы</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'psywings:polls' %}" class="float-start nav-link p-2 m-2">Опросы</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'psywings:month_event_calendar' %}" class="float-start nav-link p-2 m-2">Календарь</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-3 float-end">
+        <div class="float-start">
+
+
+
+        </div>
+        <div class="float-start">
+
+
+
+            <form class="d-flex bg-dark text-white float-end p-1 m-1" action="{% url 'psywings:search_all' %}" method="get">
+                <input class="form-control me-2" name="q" type="text" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn bg-dark text-white p-1 m-1" type="submit">Поиск</button>
+            </form>
+        </div>
+    </div>
+</nav>
+

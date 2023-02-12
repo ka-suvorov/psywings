@@ -1,0 +1,75 @@
+<footer class="container-fluid fixed-bottom bg-dark text-white p-2 clearfix">
+
+<footer class="container-fluid fixed-bottom bg-dark text-white p-2 clearfix">
+	<div class="float-start">
+		<a class ="btn btn-dark small" href="https://vk.com/konsantin_suvorov" target="_blank"> &copy; К.А. Суворов</a>
+	</div>
+
+	<div class="float-end">
+
+		<div class="float-start">
+			<a href="#" class="float-start nav-link p-1 m-1"  onclick="return add_favorite(this);">Добавить в Избранное</a>
+		</div>
+
+		<div class="float-start">
+			<time id="date" class="float-end p-1 m-1"></time>
+		</div>
+		<div class="float-start">
+			<time id="time" class="float-end p-1 m-1"></time>
+		</div>
+
+	</div>
+	<script>
+		var dt = new Date();
+		document.getElementById("date").innerHTML = dt.toLocaleDateString();
+	</script>
+	<script>
+		var span = document.getElementById('time');
+			function time() {
+			  var d = new Date();
+			  var s = d.getSeconds();
+			  var m = d.getMinutes();
+			  var h = d.getHours();
+			  span.textContent =
+				("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+			}
+			setInterval(time, 1000);
+	</script>
+
+	<script>
+		// Добавить в Избранное
+		function add_favorite(a) {
+		  title=document.title;
+		  url=document.location;
+		  try {
+			// Internet Explorer
+			window.external.AddFavorite(url, title);
+		  }
+		  catch (e) {
+			try {
+			  // Mozilla
+			  window.sidebar.addPanel(title, url, "");
+			}
+			catch (e) {
+			  // Opera
+			  if (typeof(opera)=="object") {
+				a.rel="sidebar";
+				a.title=title;
+				a.url=url;
+				return true;
+			  }
+			  else {
+				// Unknown
+				alert('Нажмите Ctrl-D чтобы добавить страницу в закладки');
+			  }
+			}
+		  }
+		  return false;
+}
+
+	</script>
+
+
+</footer>
+
+</footer>

@@ -1,0 +1,23 @@
+{% load site_tags %}
+<div class="container-fluid banners text-light p-4 m-5 clearfix">
+    <div class="col-md-7 align-items-right float-end" style="height: 150px;">
+
+        {% get_list_quotas as list_quotas %}
+
+            {% for item in list_quotas %}
+        <p class="float-end m-1 p-1" style="position: relative;
+                                            right: 15%;
+                                            font-size: 1.3rem;
+                                            justify-content: right;
+                                            align-items: right;">
+            <q>{{ item.text }}</q>.</p>
+        <br />
+        <h4 class="float-start m-1 p-1" style="position: relative;
+                                                left: 50%;
+                                                font-size: 1.6rem;
+                                                justify-content: right;
+                                                align-items: right;">
+        <b>{{ item.name }}</b></h4>
+        {% endfor %}
+    </div>
+</div>

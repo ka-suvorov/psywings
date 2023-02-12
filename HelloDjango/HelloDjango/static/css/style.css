@@ -1,0 +1,216 @@
+/* --------------- reset.css --------------- */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, strong, sub, sup, b, u, i,  dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+	font-size: 100%;
+}
+a {
+	margin:0;
+	padding:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+	outline:none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+td, td img {
+	vertical-align: top;
+}
+input, select, button, textarea {
+	margin: 0;
+	font-size: 100%;
+	outline: none;
+}
+input[type="password"], textarea {
+	padding: 0;
+}
+input[type="checkbox"] {
+	vertical-align: bottom;
+}
+input[type="radio"] {
+	vertical-align: text-bottom;
+}
+sub {
+	vertical-align: sub;
+	font-size: smaller;
+}
+sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+article, aside, details, figcaption, figure, hgroup, menu, nav, section {
+	display:block;
+}
+nav ul {
+	 list-style:none;
+}
+
+/* --------------- /reset.css --------------- */
+
+.clr{
+	clear:both;
+}
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+html {
+  font-size: 1rem;
+}
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.1rem;
+  }
+}
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.3rem;
+  }
+}
+
+body {
+    background: radial-gradient(circle at 100%, #333, #333 50%, #eee 75%, #333 75%);
+    margin: 0;
+    padding: 0
+    overflow-x:hidden;
+}
+
+
+ul {
+    list-style-type: none;
+}
+
+
+ui li strong {
+    text-align: center;
+}
+
+
+ui .item {
+    text-align: center;
+}
+
+.header_block, {
+    max-width: 95%;
+    margin-0: auto;
+    border-radius: 1em;
+    padding: 1em;
+    display: block;
+}
+
+.top_line {
+    margin-top: 1%;
+    display: block;
+    min-height: 350px;
+    height: 100vh;
+    clear: both;
+    }
+
+.top_line p {
+    position: relative;
+    right: 15%;
+    font-size: 1.3rem;
+    justify-content: right;
+    align-items: right;
+}
+
+.top_line h4 {
+    position: relative;
+    left: 50%;
+    font-size: 1.6rem;
+    justify-content: right;
+    align-items: right;
+
+}
+
+
+.wrapper {
+    max-with: 100%;
+    }
+
+.left_side {
+    padding: 5%;
+    background: #F0F8FF;
+    float: left;
+}
+
+
+.dynamic {
+
+    float: left;
+    background: white;
+    padding: 1%;
+
+    }
+
+.right_side {
+    background: #F0FFFF;
+    float: left;
+    padding: 2%;
+}
+
+.alphabet li a {
+    font-size: 1rem;
+}
+
+div a img {
+    object-fit: none;
+    object-position: center;
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    max-height: 50px;
+    max-width: 50px;
+    margin-bottom: 1rem;
+}
+
+div .card-body img {
+    object-fit: none;
+    object-position: center;
+    object-fit:
+    cover; display: block;
+    width: 100%;
+    max-height: 64px;
+    max-width: 64px;
+    margin-bottom: 1rem;
+}
+
+div .random_image img {
+    object-fit: none;
+    object-position: center;
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 1rem;
+}
+
+div span a {
+    background: #FFFFFF;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px groove;
+    color: #000;
+}
+
+footer div a:hover {
+    color: #FFFAFA;
+}
+
+footer div a:visited {
+    color: #D3D3D3;
+}

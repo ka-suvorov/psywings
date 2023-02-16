@@ -58,7 +58,6 @@ class PostsManager(models.Manager):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
-    auto_increment_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=250, verbose_name='Заголовок новости', unique=True)
     url = models.SlugField(max_length=255, unique=True)
     text = RichTextField()
@@ -255,11 +254,14 @@ class Choice(models.Model):
         return self.choice_text
 
 
+    # Friends Links
+    
 class FriendLinks(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128, blank=False, null=False, verbose_name='Название сайта')
     url = models.URLField(verbose_name='URL Сайта')
     description = models.TextField(blank=True, null=True, verbose_name='Описание сайта')
+    pict = models.ImageField(upload_to='media/pic/%Y/%m/%d/', verbose_name='Картинка', blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
     user = models.ForeignKey(User, on_delete=models.PROTECT)
@@ -283,26 +285,8 @@ class CategoryBookManager(models.Manager):
         return qs
 
 
-# Category model for using in Post and Video
-
-
-class CategoryBooks(models.Model):
-    book_category_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=225, db_index=True, verbose_name='Название Категория', unique=True)
-    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Опубликовано')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
-    objects = CategoryBookManager()
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Категория для книг'
-        verbose_name_plural = 'Категории для книг'
-        ordering = ['-is_published']
-
-
+    # Gallery image section
+    
 class CategoryGallery(models.Model):
     title = models.CharField(max_length=225, verbose_name='Название категории')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
@@ -332,6 +316,8 @@ class Gallery(models.Model):
         verbose_name_plural = 'Фотографии'
         ordering = ['created_at']
 
+        
+        #Event section
 
 class EventManager(models.Manager):
     use_for_related_fields = True
@@ -384,6 +370,25 @@ class Event(models.Model):
         verbose_name = 'Памятная дата'
         verbose_name_plural = 'Памятные даты'
         ordering = ['title']
+
+        
+        # Book list section
+
+class CategoryBooks(models.Model):
+    book_category_id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=225, db_index=True, verbose_name='Название Категория', unique=True)
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Опубликовано')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
+    objects = CategoryBookManager()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Категория для книг'
+        verbose_name_plural = 'Категории для книг'
+        ordering = ['-is_published']
 
 
 class BooksManager(models.Manager):

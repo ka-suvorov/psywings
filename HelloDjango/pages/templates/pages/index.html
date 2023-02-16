@@ -6,10 +6,12 @@
 {% block content %}
 
 <div class="mx-auto m-5 p-2 container main text-dark text-left">
-    <div class="row col-md-11">
+    <div class="row col-md-12 p-3">
 
         <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:posts' %}" role="button"
                 style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Статьи: раздел, где выкладываются статьи по психологии, дефектологии и т.д.</a>
+        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:psy_gallery' %}" role="button"
+                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Психологическая фотогалерея.</a>
         <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:books' %}" role="button"
                 style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Книжная полка: раздел, где представлен список литературых источников по психологии и т.д.</a>
         <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:dictionary_list' %}" role="button"

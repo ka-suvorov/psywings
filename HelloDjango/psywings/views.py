@@ -5,6 +5,8 @@ from .models import CategoryPost
 from .models import EventCategory
 from .models import Event
 from .models import Books
+from .models import Gallery
+from .models import CategoryGallery
 from .models import Choice, Question
 from django.views.generic import ListView
 from django.views.generic import DetailView
@@ -171,7 +173,7 @@ class ShowPost(DetailView):
 
 class ViewEvents(ListView):
     Model = Event
-    template_name = 'pages/events.html'
+    template_name = 'psywings/all_events.html'
     context_object_name = 'events'
     paginate_by = 10
     allow_empty = True
@@ -187,7 +189,7 @@ class ViewEvents(ListView):
 class ShowEvent(DetailView):
     model = Event
     allow_empty = True
-    template_name = 'pages/event.html'
+    template_name = 'psywings/view_event.html'
     context_object_name = 'event'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -197,7 +199,7 @@ class ShowEvent(DetailView):
 
 class ViewByEventCatedory(ListView):
     model = Event
-    template_name = 'psywings/event_category.html'
+    template_name = 'psywings/events_category.html'
     context_object_name = 'category_events'
     allow_empty = True
     paginate_by = 10
@@ -209,6 +211,61 @@ class ViewByEventCatedory(ListView):
 
     def get_queryset(self):
         return Event.objects.filter(event_category_id=self.kwargs['event_category_id'], is_published=True)
+
+
+class ViewBooks(ListView):
+    template_name = 'psywings/books.html'
+    context_object_name = 'books'
+    allow_empty = True
+    paginate_by = 20
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self):
+        return Books.objects.all()
+
+
+class ViewGallery(ListView):
+    template_name = 'psywings/all_images.html'
+    context_object_name = 'gallery'
+    allow_empty = True
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self):
+        return Gallery.objects.all()
+
+
+class ShowImageGallery(DetailView):
+    model = Gallery
+    allow_empty = True
+    template_name = 'psywings/one_image.html'
+    context_object_name = 'image_gallery'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class ViewByGalleryCategory(ListView):
+    model = Gallery
+    template_name = 'psywings/category_images.html'
+    context_object_name = 'category_images'
+    allow_empty = True
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = CategoryGallery.objects.get(pk=self.kwargs['image_category_id'])
+        return context
+
+    def get_queryset(self):
+        return Gallery.objects.filter(image_category_id=self.kwargs['image_category_id'], is_published=True)
 
 
 def view_calendar(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
@@ -233,18 +290,3 @@ def view_calendar(request, year=datetime.now().year, month=datetime.now().strfti
                    'current_year': current_year,
                    'event_list': event_list,}
                    )
-
-
-class ViewBooks(ListView):
-    template_name = 'psywings/books.html'
-    context_object_name = 'books'
-    allow_empty = True
-    paginate_by = 20
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-    def get_queryset(self):
-        return Books.objects.all()
-

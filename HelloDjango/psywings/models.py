@@ -412,7 +412,7 @@ class Books(models.Model):
     class Meta:
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
-        ordering = ['title']
+        ordering = ['book']
 
 
 class News(models.Model):

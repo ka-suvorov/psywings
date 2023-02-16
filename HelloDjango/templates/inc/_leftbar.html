@@ -13,9 +13,10 @@
     {% for item in news %}
         <h5>{{ item.title }}</h5>
     <br />
-            {{ item.message }}
+            {{ item.message|safe }}
     {% endfor %}
 
+    <br /><hr>
 </div>
 
 <div class="float-start p-2">
@@ -32,3 +33,4 @@
     {% endfor %}
 
 </div>
+

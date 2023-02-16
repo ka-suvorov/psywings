@@ -5,18 +5,18 @@
 {% load static %}
 {% block content %}
 
+<div class="mx-auto m-5 p-2 container main text-dark text-center">
+    <div class="row col-md-12 p-3">
 
-<div class="mx-auto m-5 p-2 container position-relative top-50 start-50 translate-middle main clearfix">
-    <div class="row">
-
+        <h4>Опросы на сайте</h4>
         {% if latest_question_list %}
         <ul>
         {% for question in latest_question_list %}
-            <li><a href="{% url 'psywings:detail_poll' question.id %}">{{ question.question_text }}</a></li>
+            <li><a class="nav-link" href="{% url 'psywings:detail_poll' question.id %}">{{ question.question_text }}</a></li>
         {% endfor %}
         </ul>
         {% else %}
-            <p>No polls are available.</p>
+            <p>Нет новых опросов.</p>
         {% endif %}
     </div>
 </div>

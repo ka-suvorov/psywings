@@ -6,8 +6,9 @@
 {% block content %}
 
 
-<div class="mx-auto m-5 p-2 container position-relative top-50 start-50 translate-middle main clearfix">
-    <div class="row">
+<div class="mx-auto m-5 p-2 container main text-dark text-start">
+    <div class="row col-md-12 p-3">
+
         {% for item in object_list %}
             <div class="card float-start p-1 m-1">
 
@@ -15,7 +16,7 @@
                     {{ item.title }}
                 </div>
                 <div class="card-body">
-                     {{ item.text |safe|truncatechars:300}}
+                     {{ item.text |safe|truncatechars:500 }}
                                 <a href="{% url 'psywings:view_post' item.pk %}" class="btn btn btn-dar">читать далее &rarr;</a>
                 </div>
                 <div class="card-footer">

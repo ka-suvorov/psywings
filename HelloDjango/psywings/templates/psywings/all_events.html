@@ -1,29 +1,34 @@
 {% extends "base.html" %}
 {% block title %}
-    {{ title  }} :: Главная страница {{ block.super }}
+    {{ title  }} :: События месяца {{ block.super }}
 {% endblock %}
-{% load static %}
 {% block content %}
+{% load static %}
 
 <div class="mx-auto m-5 p-2 container main text-dark text-start">
     <div class="row col-md-12 p-3">
+            <h3>Памятные даты на нашем сайте</h3>
+
         {% for item in object_list %}
-            <div class="card float-start">
+        <div class="card float-start">
                 <div class="card-header">
-                        {{ item.title }}
+
+                    {{ item.title }} - <a href="{% url 'psywings:events_category' item.pk %}" class="nav-link">{{ item.event_category }}</a>
                 </div>
                 <div class="card-body float-start">
-                    {{ item.description|safe }}
+                    {{ item.text|safe }}
                     <br />
-                    <a href="{{ item.url }}" class="nav-link p-2 m-2" target="_blank">Читать далее: {{ item.title }}</a>
+                    <a href="{% url 'psywings:view_event' item.pk %}" class="nav-link p-2 m-2">Читать далее: {{ item.title }}</a>
                 </div>
                 <div class="card-footer">
                         {{ item.updated_at }}
                 </div>
             </div>
-             {% endfor %}
-   </div>
+        {% endfor %}
+
+    </div>
 </div>
+
 
 <div class="pagination col-md-10 p-1 m-5 bg-light text-dark text-center">
     <span class="step-links">
@@ -42,6 +47,5 @@
         {% endif %}
     </span>
 </div>
-
-
 {% endblock %}
+

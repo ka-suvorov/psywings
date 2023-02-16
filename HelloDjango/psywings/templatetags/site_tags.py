@@ -6,6 +6,7 @@ from ..models import FriendLinks
 from ..models import Gallery
 from ..models import Event
 from ..models import EventCategory
+from ..models import CategoryGallery
 from ..models import News
 
 register = template.Library()
@@ -13,7 +14,7 @@ register = template.Library()
 
 @register.simple_tag(name='get_friends_list')
 def get_friends_list():
-    return FriendLinks.objects.order_by("?")[0:3]
+    return FriendLinks.objects.order_by("title")
 
 
 @register.simple_tag(name='get_post_categories')
@@ -55,3 +56,7 @@ def get_fresh_news():
 def class_name(value):
     return value.__class__.__name__
 
+
+@register.simple_tag(name='get_gallery_categories')
+def get_post_categories():
+    return CategoryGallery.objects.all()

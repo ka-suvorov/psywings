@@ -1,23 +1,44 @@
+{% load static %}
 {% load site_tags %}
-<div class="container-fluid banners text-light p-4 m-5 clearfix">
-    <div class="col-md-7 align-items-right float-end" style="height: 150px;">
+<div class="container-fluid banners text-dark p-4 m-5">
+    <div class="row m-2">
+        <div class="col-md-3 align-items-left float-start" style="height: 150px;">
+              {% get_image_logo as logo %}
+            {% for item in logo %}
+                {% if item.foto %}
+            <img src="{{ item.foto.url }}" alt="{{ item.title }}" width="260" class="img-responsive img-fluid rounded mx-auto d-block" style="
+                                                                                                                                        object-fit: none;
+                                                                                                                                        object-position: center;
+                                                                                                                                        object-fit: cover;
+                                                                                                                                        display: block;
+                                                                                                                                        width: 100%;
+                                                                                                                                        max-width: 260px;
+                                                                                                                                        margin-bottom: 1rem;">
+                                {% else %}
+            <img src="https://phonoteka.org/uploads/posts/2022-02/1643964527_45-phonoteka-org-p-raznotsvetnii-fon-razmitii-50.jpg" width='360' alt="Размытое изображение">
+                        {% endif %}
 
-        {% get_list_quotas as list_quotas %}
+    {% endfor %}            
+        </div>
 
-            {% for item in list_quotas %}
-        <p class="float-end m-1 p-1" style="position: relative;
-                                            right: 15%;
-                                            font-size: 1.3rem;
-                                            justify-content: right;
-                                            align-items: right;">
-            <q>{{ item.text }}</q>.</p>
-        <br />
-        <h4 class="float-start m-1 p-1" style="position: relative;
-                                                left: 50%;
-                                                font-size: 1.6rem;
-                                                justify-content: right;
-                                                align-items: right;">
-        <b>{{ item.name }}</b></h4>
-        {% endfor %}
+        <div class="col-md-8 align-items-right float-start p-2" style="height: 150px;">
+
+            {% get_list_quotes as list_quotes %}
+
+                {% for item in list_quotes %}
+            <p class="float-start m-1 p-1" style="
+                                                font-size: 1.3rem;
+                                                justify-content: left;
+                                                align-items: left;">
+                <q>{{ item.text }}</q>.</p>
+            <br /><br /><hr>
+            <h4 class="float-start m-1 p-1" style="position: relative;
+                                                    left: 5%;
+                                                    font-size: 1.6rem;
+                                                    justify-content: right;
+                                                    align-items: right;">
+            <b>{{ item.name }}</b></h4>
+            {% endfor %}
+        </div>
     </div>
 </div>

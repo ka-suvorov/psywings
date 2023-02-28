@@ -48,7 +48,6 @@
     *::selection { background: none; }
     *::-moz-selection { background: none; }
     </style>
-    
 
     	<script type="text/javascript">
 		  var top_show = 150; // В каком положении полосы прокрутки начинать показ кнопки "Наверх"
@@ -141,25 +140,37 @@
                 font-size: 1rem;
             }
 
-            hr {margin: 20px 0;
-               padding: 0;
-               height: 0;
-               border: none;
-               border-top: 2px dotted #ddd;
-            }
+            body {
+            overflow-x: hidden;
+                font-size: 1rem;
+                }
+                @include media-breakpoint-up(sm) {
+                  html {
+                    font-size: 0.9rem;
+                  }
+                }
+                @include media-breakpoint-up(md) {
+                  html {
+                    font-size: 1.1rem;
+                  }
+                }
+                @include media-breakpoint-up(lg) {
+                  html {
+                    font-size: 1.3rem;
+                  }  }
 
-        font-face {
-	    font-family: 'FuturaBookC';
-        src: url('/static/fonts/futurabookc.eot'); /* IE 9 Compatibility Mode */
-        src: url('/static/fonts/futurabookc.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
-            url('/static/fonts/futurabookc.woff2') format('woff2'), /* Super Modern Browsers */
-            url('/static/fonts/futurabookc.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
-            url('/static/fonts/futurabookc.ttf') format('truetype'), /* Safari, Android, iOS */
-            url('/static/fonts/futurabookc.svg#futurabookc') format('svg'); /* Chrome < 4, Legacy iOS */
-          @charset "UTF-8";
+            font-face {
+            font-family: 'FuturaBookC';
+            src: url('/static/fonts/futurabookc.eot'); /* IE 9 Compatibility Mode */
+            src: url('/static/fonts/futurabookc.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+                url('/static/fonts/futurabookc.woff2') format('woff2'), /* Super Modern Browsers */
+                url('/static/fonts/futurabookc.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+                url('/static/fonts/futurabookc.ttf') format('truetype'), /* Safari, Android, iOS */
+                url('/static/fonts/futurabookc.svg#futurabookc') format('svg'); /* Chrome < 4, Legacy iOS */
 
+                 @charset "UTF-8";
 
-                     return-to-top {
+            return-to-top {
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
@@ -226,29 +237,9 @@
                 color:#fff!important;
                 }
 
-              body {
-            overflow-x: hidden;
-            font-size: 1rem;
-                }
-                @include media-breakpoint-up(sm) {
-                  html {
-                    font-size: 0.9rem;
-                  }
-                }
-                @include media-breakpoint-up(md) {
-                  html {
-                    font-size: 1.1rem;
-                  }
-                }
-                @include media-breakpoint-up(lg) {
-                  html {
-                    font-size: 1.3rem;
-                  }
-            }
 
     </style>
-
-    <script>
+           <script>
 
                     // ===== Scroll to Top ====
                         $(‘.scroll-top’).click(function () {
@@ -259,7 +250,6 @@
                         });
 
                 </script>
-
 </head>
 {% background_image_url %}
 <body class="d-flex flex-column clearfix" style="background: url('{% background_image_url %}') no-repeat fixed; background-size: cover; overflow-x:hidden;">
@@ -273,7 +263,7 @@
             {% include "inc/_navbar.html" %}
         </div>
 
-         <div class ='top_line container-fluid m-1 quotes text-light'>
+        <div class ='container-fluid p-3 banner text-dark text-center' style="opacity:0.9; margin-0: auto;">
             {% include "inc/_topline.html" %}
         </div>
         <div class ='container-fluid p-3 banner text-dark text-center' style="opacity:0.9; margin-0: auto;">
@@ -291,30 +281,34 @@
 
 
 
-                <div class ="dynamic float-start col-md-5 m-1 p-1" style="font-color: black;
-                                                                          font-size: 1rem;
-                                                                          border-style: groove;
-                                                                          border-radius: 30px;">
-                    
-                    
-
-                    {% block content %}
-                    {% endblock %}
-                    
-                    
-                    
+                <div class="left_side float-md-start pull-left row-fluid col-md-2 text-dark col-sm-12 p-3" style="background: white;
+                                                                                        padding: 2%;
+                                                                                        opacity: 0.8;
+                                                                                        font-color: black;
+                                                                                        font-size: 1rem;
+                                                                                        border-style: groove;
+                                                                                        border-radius: 30px;">
+                            {% block left_sidebar %}
+                            {% include "inc/_left_bar.html" %}
+                            {% endblock %}
                 </div>
 
-                <div class="float-start col-md-6 m-1 p-1" style="background: white;
-                                                                 opacity: 0.9;
-                                                                 border-style: groove;
-                                                                 margin: 1%;
-                                                                 font-size: 1rem;
-                                                                 border-radius: 5% 5% / 5% 5%;">
-                            {% block right_content %}
-                            {% include "inc/_right_content.html" %}
-                            {% endblock %}
-                        </div>
+
+
+                <div class="dynamic float-md-start pull-left row-fluid col-md-10 col-sm-12 p-3" style="background: white;
+                                                                                        padding: 2%;
+                                                                                        opacity: 0.8;
+                                                                                        font-color: black;
+                                                                                        font-size: 1rem;
+                                                                                        border-style: groove;
+                                                                                        border-radius: 30px;">
+                    
+                    
+                    
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
 
 
             </div>
@@ -325,7 +319,7 @@
         </div>
     </div>
 
-      <script type="text/javascript">
+    <script type="text/javascript">
 
         /** TO DISABLE SCREEN CAPTURE **/
     document.addEventListener('keyup', (e) => {

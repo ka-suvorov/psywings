@@ -1,31 +1,31 @@
 {% load site_tags %}
-
+<div class="row p-1">
 <div class="float-start p-2 m-1">
+
         <h4>Сообщества в ВК</h4>
-
-    {% get_friends_list as friends %}
-    {% for item in friends %}
-        {% if item.title is not None and item.url is not None %}
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a href="{{ item.url }}" class="float-start nav-link" target="_blank">{{ item.title }}</a>
-                </li>
-            </ul>
-        {% else %}
-            <h5>Список друзей пока пуст</h5>
-        {% endif %}
-    {% endfor %}
-
+        {% get_friends_list as friends %}
+        {% for item in friends %}
+            {% if item.title is not None and item.url is not None %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a href="{{ item.url }}" class="float-start nav-link" target="_blank">{{ item.title }}</a>
+                    </li>
+                </ul>
+            {% else %}
+                <h5>Список друзей пока пуст</h5>
+            {% endif %}
+        {% endfor %}
+        <br /><hr>
 </div>
 
-<div class="float-start p-2">
+<div class="float-start p-2 m-1">
         <h4>Категории Галереи</h4>
     <br />
     {% get_gallery_categories as gallery_cat %}
      {% for item in gallery_cat %}
         <ul class="navbar-nav">
             <li class="nav-item m-0 float-start" style="border: 0px groove; border-radius: 16px; margin: -0.75rem !important;">
-              <a href="{% url 'psywings:get_gallery_category' item.pk %}" class="nav-link">{{ item.title }}</a>
+              <a href="{% url 'pages:get_gallery_category' item.pk %}" class="nav-link">{{ item.title }}</a>
             </li>
         </ul>
     <br />
@@ -34,7 +34,7 @@
 </div>
 
 <div class="float-start p-2 m-1">
-        <h4>Случайная картинка </h4>
+        <h4>Случайное изображение </h4>
 
     {% get_list_gallery as pics %}
     {% for item in pics %}
@@ -52,5 +52,5 @@
                         {% endif %}
 
     {% endfor %}
-
+</div>
 </div>

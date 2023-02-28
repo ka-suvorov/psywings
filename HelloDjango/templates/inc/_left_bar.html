@@ -1,0 +1,54 @@
+{% load site_tags %}
+<div class="row p-1">
+    <div class="float-start p-2 m-1">
+        <h2><b>Новости сайта</b></h2>
+        <hr style="margin: 20px 0;
+                    padding: 0;
+                    height: 0;
+                    border: none;
+                    border-top: 2px dotted #ddd;">
+
+        {% get_fresh_news as news %}
+
+        {% for item in news %}
+        <h4><b>{{ item.title }}</b></h4>
+        <br />
+                {{ item.content|safe }}
+        {% endfor %}
+
+        <br /><hr>
+    </div>
+
+    <div class="float-start p-2 m-1">
+            <h2><b>Категории статей</b></h2>
+        <br />
+        {% get_post_categories as post_cat %}
+         {% for item in post_cat %}
+            <ul class="navbar-nav p-2 m-1">
+                <li class="nav-item m-0 float-start" style="border: 0px groove; border-radius: 16px; margin: -0.75rem !important;">
+                    <a href="{% url 'pages:get_post_category' item.pk %}" class="nav-link"><b>{{ item.title }}</b></a>
+                </li>
+            </ul>
+        <br />
+        {% endfor %}
+
+    </div>
+
+        <div class="float-start p-2 m-1">
+
+            <h2><b>Сообщества в ВК</b></h2>
+            {% get_friends_list as friends %}
+            {% for item in friends %}
+                {% if item.title is not None and item.url is not None %}
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{ item.url }}" class="float-start nav-link" target="_blank"><b>{{ item.title }}</b></a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <h5>Список друзей пока пуст</h5>
+                {% endif %}
+            {% endfor %}
+            <br /><hr>
+    </div>
+</div>

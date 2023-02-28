@@ -1,0 +1,103 @@
+{% load site_tags %}
+
+<div class="right_content col-md-12 clearfix">
+
+    <div class="">
+
+        <div class="container-fluid float-start tob_right_content row" style="background: white;
+                                                                 opacity: 0.9;
+                                                                 border-style: groove;
+                                                                 margin: 1%;
+                                                                 font-size: 1rem;
+                                                                 border-radius: 5% 5% / 5% 5%;">
+
+
+
+            <div class="float-start col-md-5 m-1 p-2 text-start">
+
+                <h2 class="p-1 m-1"><b>Что нового на сайте?</b></h2>
+                    <hr>
+
+                    {% get_fresh_news as news %}
+
+                    {% for item in news %}
+                        <h4><b>{{ item.title }}</b></h4>
+                            <br />
+                            {{ item.content|safe }}
+                    {% endfor %}
+
+                    <br /><hr>
+
+            </div>
+            <div class="float-start col-md-5 m-1 p-2 text-start">
+
+                <h2 class="p-1 m-1"><b>Категории статей</b></h2>
+
+                <br />
+                    {% get_post_categories as post_cat %}
+                     {% for item in post_cat %}
+                        <ul class="navbar-nav p-1 m-1">
+                            <li class="nav-item m-0 float-start" style="border: 0px groove; border-radius: 16px; margin: -0.75rem !important;">
+                              <a href="{% url 'pages:get_post_category' item.pk %}" class="nav-link">{{ item.title }}</a>
+                            </li>
+                        </ul>
+                    <br />
+                    {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="">
+        <div class="container-fluid float-start tob_right_content p-2 row" style="background: white;
+                                                                 opacity: 0.9;
+                                                                 border-style: groove;
+                                                                 margin: 1%;
+                                                                 font-size: 1rem;
+                                                                 border-radius: 5% 5% / 5% 5%;">
+
+
+
+            <div class="float-start col-md-5 m-1 p-2 text-start">
+
+                <h2 class="p-1 m-1"><b>Друзья в ВК</b></h2>
+                    <br />
+                    {% get_friends_list as friends %}
+                    {% for item in friends %}
+                        {% if item.title is not None and item.url is not None %}
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                  <a href="{{ item.url }}" class="float-start nav-link" target="_blank">{{ item.title }}</a>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <h5>Список друзей пока пуст</h5>
+                        {% endif %}
+                    {% endfor %}
+                    <br /><hr>
+
+            </div>
+
+            <div class="float-start col-md-5 m-1 p-2 row">
+
+
+                <div class="float-start col-md-5">
+
+                    <h2 class="p-1 m-1"><b>Категории фотогалереи</b></h2>
+                        <br />
+                        {% get_gallery_categories as gallery_cat %}
+                         {% for item in gallery_cat %}
+                            <ul class="navbar-nav">
+                                <li class="nav-item m-0 float-start" style="border: 0px groove; border-radius: 16px; margin: -0.75rem !important;">
+                                  <a href="{% url 'pages:get_gallery_category' item.pk %}" class="nav-link">{{ item.title }}</a>
+                                </li>
+                            </ul>
+                        <br />
+                        {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

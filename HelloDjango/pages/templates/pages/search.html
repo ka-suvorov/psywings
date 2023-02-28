@@ -1,0 +1,72 @@
+{% extends "base_pages.html" %}
+{% block title %}
+    {{ title  }} :: Результаты поиска {{ block.super }}
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load site_tags %}
+
+<div class="mx-auto m-5 p-2 container main text-dark text-start">
+    <div class="row col-md-12 p-3">
+
+        <b>Результаты поиска, всего: {{ count }}</b><br /><hr>
+
+        {% for item in object_list %}
+            {% with item|class_name as klass %}
+                {% if klass == 'Post' %}
+                    <div class="card float-start m-3 col-md-12">
+                        <b>{{ item.title }}</b><br />
+                        {{ item.text |safe|truncatechars:500 }}
+                        <a href="{% url 'pages:view_post' item.pk %}" class="btn btn btn-dar">читать далее &rarr;</a>
+
+                    </div>
+
+                        {% elif klass == 'Books' %}
+
+                    <div class="card float-start m-3 col-md-12">
+                          <b>{{ item.title }}</b><br />
+                          {{ item.book |safe|truncatechars:500}}
+                   </div>
+
+                        {% elif klass == 'Persons' %}
+
+                    <div class="card float-start m-3 col-md-12">
+                          <b>{{ item.title }}</b><br />
+                          {{ item.text |safe|truncatechars:500 }}
+                        <a href="{% url 'pages:persona' item.pk %}" class="nav-link p-2 m-2">Читать далее: {{ item.title }}</a>
+                   </div>
+
+        {% elif klass == 'Dictionary' %}
+
+                    <div class="card float-start m-3 col-md-12">
+                          <b>{{ item.title }}</b><br />
+                          {{ item.text |safe|truncatechars:500}}
+                   </div>
+
+                {% endif %}
+
+            {% endwith %}
+        {% endfor %}
+
+    </div>
+
+</div>
+<div class="pagination col-md-11 p-1 m-5 bg-light text-dark text-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';"> Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страниц {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

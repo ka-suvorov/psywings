@@ -5,23 +5,34 @@
 {% load static %}
 {% block content %}
 
-<div class="mx-auto m-5 p-2 container main text-dark text-left">
-    <div class="row col-md-12 p-3">
+<div class="container main text-dark text-left">
+    <div class="row col-md-12 p-2">
 
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:posts' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Статьи: раздел, где выкладываются статьи по психологии, дефектологии и т.д.</a>
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:psy_gallery' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Психологическая фотогалерея.</a>
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:books' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Книжная полка: раздел, где представлен список литературых источников по психологии и т.д.</a>
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:dictionary_list' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Психологический словарь: раздел с необходимыми терминами</a>
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:links' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Ресурсы: раздел, где собраны необходимые ссылки на тематические сайты </a>
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:polls' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Опросы: раздел с опросами мнений на сайте</a>
-        <a class="btn btn-outline-dark p-3 d-block" href="{% url 'psywings:month_event_calendar' %}" role="button"
-                style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">Календарь событий: раздел с памятными датами, посвященный психологической науке </a>
+
+        {% load site_tags %}
+
+
+        {% get_list_icons as icons %}
+            {% for item in icons %}
+
+        <div><img src="{{ item.foto.url }}" alt="{{ item.title }}" class="random_image
+                                                                                        img-responsive
+                                                                                        img-fluid
+                                                                                        rounded float-start
+                                                                                        mx-auto d-block" style="
+
+                                                                                        object-fit: none; object-fit: cover; display: block;
+                                                                                        width: 100%; max-width: 64px; margin-bottom: 1rem;" />
+
+                        <a href="{{ item.inside.url }}" class="float-start btn btn-outline-dark p-3 d-block text-start"
+                        role="button"
+                        style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">
+
+                            {{ item.title }}</a></div>
+
+                <br />
+
+            {% endfor %}
 
     </div>
 </div>

@@ -1,0 +1,47 @@
+{% extends "base_pages.html" %}
+{% block title %}
+    {{ title  }} :: Статьи категории {{ block.super }}
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="mx-auto m-5 p-2 container main text-dark text-start">
+    <div class="row col-md-12 p-3">
+
+        {% for item in post %}
+                <div class="col-md-12 card float-start" style="border-width: 2px; color: #000000">
+                    <div class="card-header">
+                        <a href="{% url 'pages:view_post' item.pk %}" class="nav-item nav-link"><b>{{ item.title }}</b></a>
+                </div>
+                    <div class="card-body">
+
+                            {{ item.text |safe|truncatechars:300}}
+                                <a href="{% url 'pages:view_post' item.pk %}" class="btn btn btn-dar">читать далее &rarr;</a>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                    <p>{{ item.created_at|date:"Y-m-d H:i:s" }}</p>
+                </div>
+                </div>
+            {% endfor %}
+    </div>
+ </div>
+ <div class="pagination col-md-10 p-3 m-3 bg-light text-dark">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';"> Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страниц {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" style="background: #FFFFFF; padding: 10px; cursor: pointer; border: 1px groove; color: #000;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}

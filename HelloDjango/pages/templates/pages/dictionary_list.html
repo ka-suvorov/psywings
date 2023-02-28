@@ -1,0 +1,49 @@
+{% extends "base_pages.html" %}
+{% load static %}
+{% block content %}
+
+<div class="mx-auto m-5 p-2 container main text-dark text-start">
+    <div class="row col-md-10 p-3">
+        <div class="dict list_items grid_18">
+            <h3><b>Словарь психологических терминов</b></h3>
+            <hr>
+            <br />
+
+            {% if alphabet %}
+            <ul class="clearfix alphabet">
+                {% for key,value in alphabet %}
+                    <li class="float-start"><a href="#{{ key }}" style="background: #FFFFFF; padding: 5px; cursor: pointer;" onmouseover="this.style.backgroundColor='#A9A9A9';" onmouseout="this.style.backgroundColor='#FFFFFF';"><strong>{{ key }}</strong></a></li>
+                {% endfor %}
+                <br />
+            </ul>
+            {% endif %}
+            <ul>
+            {% if object_list %}
+
+                {% for key, value in object_list.items %}
+                    <li class="p-2 m-1">
+
+                        <a name="{{ key }}"></a>
+                        <h5 class="item text-center">{{ key|upper }}</h5>
+                        <ul>
+                        {% for d in value %}
+                            <li>
+                                <strong>{{ d.title|title }}</strong>
+                                – {{ d.text|safe }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+
+
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li><strong>No records found</strong></li>
+            {% endif %}
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

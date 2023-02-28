@@ -1,0 +1,36 @@
+{% extends "base_pages.html" %}
+{% block title %}
+    {{ title  }} :: Смотрим статью {{ block.super }}
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load ratings %}
+
+<div class="mx-auto m-5 p-2 container main text-dark text-start">
+    <div class="row col-md-12 p-3">
+
+        <div class="card col-md-12" style="border-width: 2px; color: #000000">
+                <div class="card-header">
+
+
+                    <h3 class="card-text"><b>{{ object.title }}</b></h3> - <a href="{{ item.url }}" class="float-start nav-link" target="_blank">Перейти в сообщество в ВК</a>
+
+                </div>
+                <div class="card-body">
+
+                     {{ object.content|safe }}
+
+
+
+                </div>
+                <div class="card-footer text-muted">
+                    <p>{{ object.created_at|date:"Y-m-d H:i:s" }}</p>
+
+                    {% ratings object %}
+                </div>
+            </div>
+    </div>
+ </div>
+
+
+{% endblock %}

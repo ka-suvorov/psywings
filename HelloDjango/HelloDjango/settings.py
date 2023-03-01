@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&7lp!^02@8qml86g#95ldv$94u_z89(-rp536qi@h1w5zj=dem'
+SECRET_KEY = 'django-insecure-l4q4=cg6dra7=3o$=eb^b80d7db*q$qw1!gjuf-*_y78dg)x9h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,16 +36,16 @@ INSTALLED_APPS = [
     'hitcount',
     'ckeditor',
     'ckeditor_uploader',
-    'whitenoise',
+    'whitenoise.runserver_nostatic',
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
-    'django.contrib.sitemaps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'HelloDjango.urls'
@@ -74,12 +77,12 @@ TEMPLATES = [
         },
     },
 ]
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
 WSGI_APPLICATION = 'HelloDjango.wsgi.application'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STAR_RATINGS_ANONYMOUS = True
 
-DJANGO_STATIC = True
-DJANGO_STATIC_MEDIA_URL = "//static"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -89,6 +92,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'opsis_dj3',
+#         'USER': 'opsis_dj3',
+#         'PASSWORD': 's2zE#Y5uu.74#*',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -126,12 +141,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-STATIC_URL = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = '/home/o/opsis/psy-wings.ru/static'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -143,6 +156,8 @@ CKEDITOR_CONFIGS = {
 
     },
 }
+
+AVATAR_THUMB_FORMAT = 'PNG'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

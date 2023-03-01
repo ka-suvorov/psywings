@@ -282,7 +282,7 @@
     </div>
 
     <div class="main_block container-fluid clearfix m-1 p-1">
-            <div class="wrapper row col-nd-12" style="max-width: 95%;
+            <div class="wrapper container row" style="max-width: 95%;
                                                 margin-top: 0;
                                                 margin-bottom: 0;
                                                 margin-left: auto;
@@ -290,8 +290,7 @@
                                                 opacity: 0.9;">
 
 
-{% load cache %}
-{% cache 5000 content %}
+
                 <div class ="dynamic float-start col-md-5" style="font-color: black;
                                                                           font-size: 1rem;
                                                                           border-style: groove;
@@ -306,21 +305,19 @@
 
                     
                 </div>
-{% endcache %}
-{% load cache %}
-{% cache 500 left_sidebar %}
+
 
                 <div class="float-start col-md-6" style="background: white;
                                                                  opacity: 0.9;
                                                                  border-style: groove;
-
+                                                                 margin: 1%;
                                                                  font-size: 1rem;
                                                                  border-radius: 5% 5% / 5% 5%;">
                             {% block right_content %}
                             {% include "inc/_right_content.html" %}
                             {% endblock %}
                         </div>
-{% endcache %}
+
 
             </div>
     </div>

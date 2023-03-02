@@ -31,6 +31,7 @@ urlpatterns = [
     path('gallery_category/<int:image_category_id>/', ViewByGalleryCategory.as_view(), name='get_gallery_category'),
     path('gallery/<int:pk>/', ShowImageGallery.as_view(), name='image_gallery'),
     path('calendar/', view_calendar, name='month_event_calendar'),
+    path('suvorov/', view_suvorov, name='suvorov'),
 
        ]
 

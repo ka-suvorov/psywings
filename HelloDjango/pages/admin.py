@@ -13,9 +13,9 @@ from .models import CategoryGallery
 from .models import Persons
 from .models import LogoImage
 from .models import ListIcons
-from django.utils.translation import gettext_lazy as _
 from .models import BackgroundImage
 from .models import Dictionary
+from .models import Suvorov
 
 
 admin.site.site_header = "Админка сайта PSY-WINGS! - Добро пожаловать в админку!"
@@ -29,6 +29,11 @@ class ListIconsAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     list_editable = ('is_published',)
     list_per_page = 20
+
+
+class SuvorovAdmin(admin.ModelAdmin):
+    list_display = 'title',
+    search_fields = 'title',
 
 
 class LogoImageAdmin(admin.ModelAdmin):
@@ -188,3 +193,4 @@ admin.site.register(FriendLinks, FriendLinksAdmin)
 admin.site.register(Quotes, QuotesAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Dictionary, DictionaryAdmin)
+admin.site.register(Suvorov, SuvorovAdmin)

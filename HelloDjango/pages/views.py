@@ -7,6 +7,7 @@ from .models import Event
 from .models import Books
 from .models import Gallery
 from .models import Persons
+from .models import Suvorov
 from .models import FriendLinks
 from .models import CategoryGallery
 from .models import Choice, Question
@@ -354,3 +355,9 @@ def get_category(request, category_id):
     post = Post.objects.filter(category_id=category_id)
     category = Post.objects.get(pk=category_id)
     return render(request, 'pages/post_category.html', {'post': post, 'category': category})
+
+
+def view_suvorov(requests):
+    author = Suvorov.objects.all()
+    template_name = 'pages/suvorov.html'
+    return render(requests, template_name, {'author': author})

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from cffi.backend_ctypes import xrange
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+# from django.core.validators import validate_image_file_extension
 from django.urls import reverse_lazy
 import datetime
 from django.utils import timezone
@@ -502,3 +503,17 @@ class SingletonModel(models.Model):
 
 class BackgroundImage(SingletonModel):
     img = models.ImageField(upload_to='background-image')
+
+
+class Suvorov(SingletonModel):
+    title = models.CharField(max_length=220, verbose_name='Автор сайта')
+    text = RichTextUploadingField()
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Об авторе'
+        verbose_name_plural = 'Об авторе'
+        ordering = ['title']

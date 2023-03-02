@@ -1,32 +1,66 @@
 <footer class="container-fluid fixed-bottom bg-dark text-white p-2 clearfix" style="overflow-x: hidden;">
-	<div class="float-start">
-		<a class ="btn btn-dark small" href="https://vk.com/konsantin_suvorov" target="_blank"> &copy; К.А. Суворов</a>
-		<a class ="btn btn-dark small" href="https://vk.com/id274112563" target="_blank"> Оформление &copy; Marcus Steppefox</a>
-		<a class ="btn btn-dark small" href="https://t.me/+VM5wPZxMJ7uUT-vP" target="_blank"> Telegram: PSY-WINGS!</a>
+	{% load site_tags %}
+	<div class="row">
+		<div class="container-fluid">
+			<div class="float-start">
+						<strong class="p-1 m-1">PSY-WINGS.stat:</strong>
+			</div>
 
+			<div class="float-start">
+						<strong class="p-1 m-1">Статьи - {% get_stat_posts %}</strong>
+			</div>
+
+			<div class="float-start">
+						<strong class="p-1 m-1">Фото - {% get_stat_gallery %}</strong>
+			</div>
+
+			<div class="float-start">
+						<strong class="p-1 m-1">Список литературы - {% get_stat_books %}</strong>
+			</div>
+
+			<div class="float-start">
+						<strong class="p-1 m-1">Термины - {% get_stat_terms %}</strong>
+			</div>
+
+			<div class="float-start">
+						<strong class="p-1 m-1">Опросы - {% get_stat_polls %}</strong>
+			</div>
+
+			<div class="float-start">
+						<strong class="p-1 m-1">Персоналии - {% get_stat_persons %}</strong>
+			</div>
+			<hr>
+		</div>
+		<div class="container-fluid">
+			<div class="float-start">
+				<a class ="btn btn-dark small" href="https://vk.com/konsantin_suvorov" target="_blank"> &copy; К.А. Суворов</a>
+				<a class ="btn btn-dark small" href="https://vk.com/id274112563" target="_blank"> Оформление &copy; Marcus Steppefox</a>
+				<a class ="btn btn-dark small" href="https://t.me/+VM5wPZxMJ7uUT-vP" target="_blank"> Telegram: PSY-WINGS!</a>
+
+			</div>
+
+			<div class="float-end">
+
+				<div class="float-start">
+					<a href="#" class="float-start nav-link p-1 m-1"  onclick="return add_favorite(this);">Добавить в Избранное</a>
+				</div>
+
+				<div class="float-start">
+					<time id="date" class="float-start p-1 m-1"></time>
+				</div>
+				<div class="float-start">
+					<time id="time" class="float-start p-1 m-1"></time>
+				</div>
+				<div class=float-start>
+					<a href="#" title="Вернуться к началу страницы" class="topNubex nav-link float-start p-1 m-1"
+									style="color: yellow;">Вверх</a>
+
+				</div>
+
+			</div>
+		</div>
 	</div>
 
-	<div class="float-end">
-
-		<div class="float-start">
-			<a href="#" class="float-start nav-link p-1 m-1"  onclick="return add_favorite(this);">Добавить в Избранное</a>
-		</div>
-
-		<div class="float-start">
-			<time id="date" class="float-start p-1 m-1"></time>
-		</div>
-		<div class="float-start">
-			<time id="time" class="float-start p-1 m-1"></time>
-		</div>
-		<div class=float-start>
-		    <a href="#" title="Вернуться к началу страницы" class="topNubex nav-link float-start p-1 m-1"
-                            style="
-                        	color: yellow;
-                        	">Вверх</a>
-		    
-		</div>
-
-	</div>
 	<script>
 		var dt = new Date();
 		document.getElementById("date").innerHTML = dt.toLocaleDateString();

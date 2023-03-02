@@ -11,6 +11,11 @@ from ..models import News
 from ..models import LogoImage
 from ..models import BackgroundImage
 from ..models import ListIcons
+from ..models import Post
+from ..models import Books
+from ..models import Dictionary
+from ..models import Persons
+from ..models import Question
 
 
 register = template.Library()
@@ -75,6 +80,36 @@ def get_post_categories():
 @register.simple_tag(name='get_list_icons')
 def get_icons():
     return ListIcons.objects.all().order_by('date')
+
+
+@register.simple_tag(name='get_stat_posts')
+def get_stat_posts():
+    return Post.objects.count()
+
+
+@register.simple_tag(name='get_stat_gallery')
+def get_stat_gallery():
+    return Gallery.objects.count()
+
+
+@register.simple_tag(name='get_stat_books')
+def get_stat_books():
+    return Books.objects.count()
+
+
+@register.simple_tag(name='get_stat_terms')
+def get_stat_terms():
+    return Dictionary.objects.count()
+
+
+@register.simple_tag(name='get_stat_polls')
+def get_stat_polls():
+    return Question.objects.count()
+
+
+@register.simple_tag(name='get_stat_persons')
+def get_stat_terms():
+    return Persons.objects.count()
 
 
 @register.filter()

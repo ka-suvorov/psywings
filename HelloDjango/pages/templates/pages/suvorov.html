@@ -1,0 +1,29 @@
+{% extends "base_pages.html" %}
+{% block title %}
+    {{ title  }} :: Смотрим статью {{ block.super }}
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load ratings %}
+
+<div class="mx-auto m-5 p-2 container main text-dark text-start">
+    <div class="row col-md-12 p-3">
+        {% for item in author %}
+        <div class="card col-md-12" style="border-width: 2px; color: #000000">
+                <div class="card-header">
+                    <b>{{ item.title }}</b>
+                </div>
+                <div class="card-body">
+
+                     {{ item.text|safe }}
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+ </div>
+
+
+{% endblock %}

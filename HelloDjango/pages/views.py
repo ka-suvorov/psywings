@@ -5,6 +5,7 @@ from .models import CategoryPost
 from .models import EventCategory
 from .models import Event
 from .models import Books
+from .models import CategoryBooks
 from .models import Gallery
 from .models import Persons
 from .models import Suvorov
@@ -344,7 +345,7 @@ class ShowPersona(DetailView):
     model = Persons
     allow_empty = True
     template_name = 'pages/persona.html'
-    context_object_name = 'event'
+    context_object_name = 'persona'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -355,6 +356,12 @@ def get_category(request, category_id):
     post = Post.objects.filter(category_id=category_id)
     category = Post.objects.get(pk=category_id)
     return render(request, 'pages/post_category.html', {'post': post, 'category': category})
+
+
+def get_book_category(request, book_category_id):
+    book = Books.objects.filter(category_id=book_category_id)
+    category = Books.objects.get(pk=book_category_id)
+    return render(request, 'pages/book_category.html', {'book': book, 'category': category})
 
 
 def view_suvorov(requests):

@@ -290,7 +290,7 @@ class CategoryBooks(models.Model):
     class Meta:
         verbose_name = 'Категория для книг'
         verbose_name_plural = 'Категории для книг'
-        ordering = ['-is_published']
+        ordering = ['created_at']
 
 
 class BooksManager(models.Manager):
@@ -308,6 +308,7 @@ class BooksManager(models.Manager):
 class Books(models.Model):
     title = models.CharField(max_length=250, verbose_name='Название книги')
     book = RichTextUploadingField()
+    category = models.ForeignKey(CategoryBooks, on_delete=models.PROTECT, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Опубликовано')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     is_published = models.BooleanField()

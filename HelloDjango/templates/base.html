@@ -22,34 +22,6 @@
     <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
     <title>PSY-WINGS {% block title %}{% endblock %}</title>
 
-<script type="text/javascript">
-
-        window.addEventListener("load", () => {
-          // (A) TARGET THIS SECTION ONLY
-          var target = document.getElementById("no-copy");
-
-        // (A) PREVENT CONTEXT MENU FROM OPENING
-        document.addEventListener("contextmenu", (evt) => {
-          evt.preventDefault();
-        }, false);
-
-        // (B) PREVENT CLIPBOARD COPYING
-        document.addEventListener("copy", (evt) => {
-          // (B1) CHANGE THE COPIED TEXT IF YOU WANT
-          evt.clipboardData.setData("text/plain", "Copying is not allowed on this webpage");
-
-          // (B2) PREVENT THE DEFAULT COPY ACTION
-          evt.preventDefault();
-        }, false);
-    </script>
-    <style>
-    /* (C) NO SELECT + HIGHLIGHT COLOR */
-    * { user-select: none; }
-    *::selection { background: none; }
-    *::-moz-selection { background: none; }
-    </style>
-    
-
     	<script type="text/javascript">
 		  var top_show = 150; // В каком положении полосы прокрутки начинать показ кнопки "Наверх"
 		  var delay = 1000; // Задержка прокрутки
@@ -67,8 +39,12 @@
 			});
 		  });
 	</script>
-
-    <style>
+        <script language="JavaScript">
+            document.onselectstart=function(){return false}
+            document.oncontextmenu=function(){return false}
+            document.onmousedown=function(){return false}
+        </script>
+        <style>
 
             html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, strong, sub, sup, b, u, i,  dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
                 margin: 0;
@@ -282,7 +258,7 @@
     </div>
 
     <div class="main_block container-fluid clearfix m-1 p-1">
-            <div class="wrapper container row" style="max-width: 95%;
+            <div class="wrapper container row col-md-12" style="max-width: 95%;
                                                 margin-top: 0;
                                                 margin-bottom: 0;
                                                 margin-left: auto;
@@ -290,11 +266,14 @@
                                                 opacity: 0.9;">
 
 
-
-                <div class ="dynamic float-start col-md-5" style="font-color: black;
-                                                                          font-size: 1rem;
-                                                                          border-style: groove;
-                                                                          border-radius: 30px;">
+{% load cache %}
+{% cache 500 content %}
+                <div class ="dynamic float-start col-md-5 p-5" style="font-color: black;
+                                                                position: relative;
+                                                                left: 5%;
+                                                                font-size: 1rem;
+                                                                border-style: groove;
+                                                                border-radius: 30px;">
                     
 
 
@@ -305,14 +284,16 @@
 
                     
                 </div>
+{% endcache %}
 
+                <div class="float-end col-md-6" style="background: white;
+                                                         opacity: 0.9;
+                                                         border-style: groove;
+                                                         position: relative;
+                                                         left: 5%;
+                                                         font-size: 1rem;
+                                                         border-radius: 5% 5% / 5% 5%;">
 
-                <div class="float-start col-md-6" style="background: white;
-                                                                 opacity: 0.9;
-                                                                 border-style: groove;
-                                                                 margin: 1%;
-                                                                 font-size: 1rem;
-                                                                 border-radius: 5% 5% / 5% 5%;">
                             {% block right_content %}
                             {% include "inc/_right_content.html" %}
                             {% endblock %}

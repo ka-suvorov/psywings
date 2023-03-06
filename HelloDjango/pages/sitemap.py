@@ -50,6 +50,7 @@ class StaticSitemap(Sitemap):
             'pages:friends',
             'pages:polls',
             'pages:persons',
+            'pages:suvorov',
                     ]
 
     def location(self, item):

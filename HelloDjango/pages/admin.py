@@ -8,6 +8,7 @@ from .models import Event
 from .models import EventCategory
 from .models import Gallery
 from .models import Books
+from .models import CategoryBooks
 from .models import News
 from .models import CategoryGallery
 from .models import Persons
@@ -67,6 +68,13 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 
+class CategoryBookAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    list_filter = ('title',)
+    search_fields = ('title',)
+    list_per_page = 20
+
+
 class CategoryGalleryAdmin(admin.ModelAdmin):
     list_display = ('title',)
     list_filter = ('title',)
@@ -85,13 +93,6 @@ class PostAdmin(admin.ModelAdmin):
 
     formatted_hit_count.admin_order_field = 'hit_count'
     formatted_hit_count.short_description = 'Hits'
-
-
-class CategoryVideoAdmin(admin.ModelAdmin):
-    list_display = ('title',)
-    list_filter = ('title',)
-    search_fields = ('title',)
-    list_per_page = 20
 
 
 class LinksAdmin(admin.ModelAdmin):
@@ -183,6 +184,7 @@ admin.site.register(CategoryGallery, CategoryGalleryAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Persons, PersonsAdmin)
 admin.site.register(Books, BooksAdmin)
+admin.site.register(CategoryBooks, CategoryBookAdmin)
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(EventCategory, EventCategoryAdmin)

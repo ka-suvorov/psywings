@@ -14,24 +14,23 @@
 
         {% get_list_icons as icons %}
             {% for item in icons %}
+        <div class="row p-1 m-1">
+        <div class="align-baseline mн-auto float-start" style="height:40px;">
 
-        <div><img src="{{ item.foto.url }}" alt="{{ item.title }}" class="random_image
-                                                                                        img-responsive
-                                                                                        img-fluid
-                                                                                        rounded float-start
-                                                                                        mx-auto d-block" style="
-
-                                                                                        object-fit: none; object-fit: cover; display: block;
-                                                                                        width: 100%; max-width: 64px; margin-bottom: 1rem;" />
-
-                        <a href="{{ item.inside.url }}" class="float-start btn btn-outline-dark p-3 d-block text-start"
+                        <a href="{{ item.inside.url }}" class="height:40px; p-1 float-start btn btn-outline-dark d-block text-start align-baseline mx-auto
+                                                                                        my-auto mн-auto"
                         role="button"
-                        style="border: 0; border-radius: 30px; border-style: groove cursor: pointer;">
-
+                        style="display:block; border: 0; border-radius: 30px; border-style: groove cursor: pointer;">
+                                        <img src="{{ item.foto.url }}" alt="{{ item.title }}" class="random_image img-responsive
+                                                                                        img-fluid ps-2
+                                                                                        rounded float-start
+                                                                                        align-baseline" style="
+                                                                                        object-fit: cover; display: block;
+                                                                                        width: 100%; max-width: 36px;" />
                             {{ item.title }}</a></div>
 
                 <br />
-
+            </div>
             {% endfor %}
 
     </div>

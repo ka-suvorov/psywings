@@ -39,12 +39,12 @@ def get_friends_list():
 
 @register.simple_tag(name='get_post_categories')
 def get_post_categories():
-    return CategoryPost.objects.all()
+    return CategoryPost.objects.all().order_by('updated_at')
 
 
 @register.simple_tag(name='get_book_categories')
 def get_book_categories():
-    return CategoryBooks.objects.all()
+    return CategoryBooks.objects.all().order_by('updated_at')
 
 
 @register.simple_tag(name='get_list_quotes')
@@ -110,6 +110,11 @@ def get_stat_polls():
 @register.simple_tag(name='get_stat_persons')
 def get_stat_terms():
     return Persons.objects.count()
+
+
+@register.simple_tag(name='get_stat_friends')
+def get_stat_friends():
+    return FriendLinks.objects.count()
 
 
 @register.filter()
